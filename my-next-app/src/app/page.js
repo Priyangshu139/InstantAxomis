@@ -90,7 +90,7 @@ export default function Home() {
   ];
 
   return (
-    <div className="min-h-screen bg-[#F8F0E3]">
+    <div id="home" className="min-h-screen bg-[#F8F0E3]">
       <header className="sticky top-0 z-50 bg-white shadow-md py-4 px-8">
         <div className="container mx-auto flex justify-between items-center">
           <div className="flex items-center">
@@ -105,35 +105,33 @@ export default function Home() {
             </h1>
           </div>
           <nav>
-            <a href="#" className="text-xl text-gray-600 hover:text-gray-800 mx-6">Home</a>
-            <a href="#" className="text-xl text-gray-600 hover:text-gray-800 mx-6">Products</a>
-            <a href="#" className="text-xl text-gray-600 hover:text-gray-800 mx-6">About</a>
-            <a href="#" className="text-xl text-gray-600 hover:text-gray-800 mx-6">Contact</a>
+            <a href="#home" className="text-xl text-gray-600 hover:text-gray-800 mx-6">Home</a>
+            <a href="#products" className="text-xl text-gray-600 hover:text-gray-800 mx-6">Products</a>
+            <a href="#contact" className="text-xl text-gray-600 hover:text-gray-800 mx-6">Contact</a>
           </nav>
         </div>
       </header>
 
-      <main className="container mx-auto px-8 py-12">
-        <div className="text-center my-16">
-          <h2 className="text-6xl font-bold text-gray-800">Assam in a Cup</h2>
-          <p className="text-2xl text-gray-600 mt-6">
+      <main className="container mx-auto px-8">
+        <div className="h-screen flex flex-col justify-center items-center text-center">
+          <h2 className="text-7xl font-bold text-gray-800">Assam in a Cup</h2>
+          <p className="text-3xl text-gray-600 mt-6">
             Bringing Assam's traditional breakfast to the modern world –
             instantly!
           </p>
-        </div>
-
-        <div className="text-center my-24 bg-white p-12 rounded-lg shadow-lg">
-          <h3 className="text-4xl font-bold text-gray-800">
-            Instant Axomiya in a Cup
-          </h3>
-          <div className="flex flex-col items-center space-y-4 mt-8 text-2xl text-gray-700">
-            <p>💧 Add hot water</p>
-            <p>⏳ Wait 2–3 minutes</p>
-            <p>🥄 Stir, enjoy!</p>
+          <div className="mt-16 bg-white p-12 rounded-lg shadow-lg">
+            <h3 className="text-4xl font-bold text-gray-800">
+              Instant Axomiya in a Cup
+            </h3>
+            <div className="flex flex-col items-center space-y-4 mt-8 text-2xl text-gray-700">
+              <p>💧 Add hot water</p>
+              <p>⏳ Wait 2–3 minutes</p>
+              <p>🥄 Stir, enjoy!</p>
+            </div>
           </div>
         </div>
 
-        <div className="space-y-24">
+        <div id="products" className="space-y-24 py-24">
           {products.map((product, index) => (
             <div
               key={index}
@@ -197,7 +195,7 @@ export default function Home() {
         </div>
       </main>
 
-      <footer className="bg-gray-800 text-white py-8 mt-24">
+      <footer id="contact" className="bg-gray-800 text-white py-8">
         <div className="container mx-auto text-center">
           <p>&copy; 2025 Instant Axomiya. All rights reserved.</p>
         </div>
