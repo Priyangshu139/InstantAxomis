@@ -1,8 +1,12 @@
+"use client";
 import Image from "next/image";
+import Link from "next/link";
+import { useState, useEffect } from "react";
 
 export default function Home() {
   const products = [
     {
+      id: 1,
       name: "Instant Xandoh",
       image: "/file_00000000d3c0622fa25504a47dbe12ec.png",
       description: (
@@ -20,6 +24,7 @@ export default function Home() {
       price: "₹60/cup",
     },
     {
+      id: 2,
       name: "Pithaguri",
       image: "/file_00000000d4a0622f8617abea7030b8d5 (1).png",
       description: (
@@ -37,6 +42,7 @@ export default function Home() {
       price: "₹45/cup",
     },
     {
+      id: 3,
       name: "Kol Khar",
       image: "/file_000000009ad461f8ae9c59c0a3850e64.png",
       description: (
@@ -89,10 +95,42 @@ export default function Home() {
     },
   ];
 
+  const [cart, setCart] = useState({});
+
+  useEffect(() => {
+    const savedCart = localStorage.getItem("cart");
+    if (savedCart) {
+      setCart(JSON.parse(savedCart));
+    }
+  }, []);
+
+  useEffect(() => {
+    if (Object.keys(cart).length > 0) {
+      localStorage.setItem("cart", JSON.stringify(cart));
+    } else {
+      localStorage.removeItem("cart");
+    }
+  }, [cart]);
+
+  const updateQuantity = (productId, newQuantity) => {
+    if (newQuantity <= 0) {
+      const newCart = { ...cart };
+      delete newCart[productId];
+      setCart(newCart);
+    } else {
+      setCart((prevCart) => ({
+        ...prevCart,
+        [productId]: newQuantity,
+      }));
+    }
+  };
+
+  const cartCount = Object.values(cart).reduce((acc, count) => acc + count, 0);
+
   return (
     <div className="min-h-screen bg-[#F8F0E3] relative">
       <div className="absolute top-0 left-0 h-full w-32 bg-repeat-y" style={{backgroundImage: "url('/Screenshot 2025-07-20 111526.png')"}}></div>
-      <div className="absolute top-0 right-0 h-full w-32 bg-repeat-y" style={{backgroundImage: "url('/Screenshot 2025-07-20 111526.png')"}}></div>
+      <div className="absolute top-0 right-0 h-full w-32 bg-repeat-y" style={{backgroundImage: "url('/Screenshot 2025-07-20 111526.png')", transform: "rotate(180deg)"}}></div>
       
       <div className="relative z-10">
         <header className="sticky top-0 z-50 bg-[#EADDCA] shadow-md py-4 px-8">
@@ -108,10 +146,20 @@ export default function Home() {
                 Instant Axomiya
               </h1>
             </div>
-            <nav>
+            <nav className="flex items-center">
               <a href="#home" className="text-xl text-gray-800 hover:text-black mx-6">Home</a>
               <a href="#products" className="text-xl text-gray-800 hover:text-black mx-6">Products</a>
               <a href="#contact" className="text-xl text-gray-800 hover:text-black mx-6">Contact</a>
+              <Link href="/cart" className="relative">
+                <svg className="h-8 w-8 text-gray-800" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+                </svg>
+                {cartCount > 0 && (
+                  <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
+                    {cartCount}
+                  </span>
+                )}
+              </Link>
             </nav>
           </div>
         </header>
@@ -138,11 +186,11 @@ export default function Home() {
           </div>
 
           <div id="products" className="container mx-auto px-8 py-24 space-y-24">
-            {products.map((product, index) => (
+            {products.map((product) => (
               <div
-                key={index}
+                key={product.id}
                 className={`flex items-center justify-center ${
-                  index % 2 === 0 ? "flex-row" : "flex-row-reverse"
+                  product.id % 2 === 1 ? "flex-row" : "flex-row-reverse"
                 }`}
               >
                 <div className="w-1/3">
@@ -166,9 +214,36 @@ export default function Home() {
                   <p className="text-3xl font-bold text-gray-800 mt-6">
                     {product.price}
                   </p>
-                  <button className="mt-8 bg-red-500 text-white py-3 px-8 rounded-full hover:bg-red-600 transition-colors text-xl">
-                    Add to Cart
-                  </button>
+                  <div className="mt-8">
+                    {!cart[product.id] ? (
+                      <button
+                        onClick={() => updateQuantity(product.id, 1)}
+                        className="bg-red-500 text-white py-3 px-8 rounded-full hover:bg-red-600 transition-colors text-xl"
+                      >
+                        Add to Cart
+                      </button>
+                    ) : (
+                      <div className="flex items-stretch bg-gray-100 rounded-full overflow-hidden shadow-md mx-auto w-fit">
+                        <button 
+                          onClick={() => updateQuantity(product.id, cart[product.id] - 1)} 
+                          className="px-4 py-2 bg-gradient-to-r from-gray-200 to-gray-300 text-gray-700 hover:from-gray-300 hover:to-gray-400 transition-all duration-200 text-lg font-bold focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-opacity-50"
+                        >
+                          −
+                        </button>
+                        <div className="flex items-center justify-center bg-white px-6 min-w-[4rem]">
+                          <span className="text-gray-800 font-bold text-lg">
+                            {cart[product.id]}
+                          </span>
+                        </div>
+                        <button 
+                          onClick={() => updateQuantity(product.id, cart[product.id] + 1)} 
+                          className="px-4 py-2 bg-gradient-to-r from-gray-200 to-gray-300 text-gray-700 hover:from-gray-300 hover:to-gray-400 transition-all duration-200 text-lg font-bold focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-opacity-50"
+                        >
+                          +
+                        </button>
+                      </div>
+                    )}
+                  </div>
                 </div>
               </div>
             ))}
