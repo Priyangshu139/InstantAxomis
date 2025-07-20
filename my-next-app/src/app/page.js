@@ -91,8 +91,8 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-[#F8F0E3] relative">
-      <div className="fixed top-0 left-0 h-full w-32 bg-repeat-y" style={{backgroundImage: "url('/Screenshot 2025-07-20 111526.png')"}}></div>
-      <div className="fixed top-0 right-0 h-full w-32 bg-repeat-y" style={{backgroundImage: "url('/Screenshot 2025-07-20 111526.png')"}}></div>
+      <div className="absolute top-0 left-0 h-full w-32 bg-repeat-y" style={{backgroundImage: "url('/Screenshot 2025-07-20 111526.png')"}}></div>
+      <div className="absolute top-0 right-0 h-full w-32 bg-repeat-y" style={{backgroundImage: "url('/Screenshot 2025-07-20 111526.png')"}}></div>
       
       <div className="relative z-10">
         <header className="sticky top-0 z-50 bg-[#EADDCA] shadow-md py-4 px-8">
