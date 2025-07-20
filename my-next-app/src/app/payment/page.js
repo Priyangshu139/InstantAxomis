@@ -62,13 +62,13 @@ export default function PaymentPage() {
       <div className="hidden md:block absolute top-0 left-0 h-full w-32 bg-repeat-y" style={{backgroundImage: "url('/Screenshot 2025-07-20 111526.png')"}}></div>
       <div className="hidden md:block absolute top-0 right-0 h-full w-32 bg-repeat-y" style={{backgroundImage: "url('/Screenshot 2025-07-20 111526.png')", transform: "rotate(180deg)"}}></div>
       
-      <div className="relative z-10 container mx-auto px-4 md:px-8 py-12">
-        <h1 className="text-4xl font-bold text-center text-gray-800 mb-8">Lupam Pay</h1>
-        <div className="flex flex-col md:flex-row gap-8 max-w-5xl mx-auto">
-          <div className="bg-white p-8 rounded-lg shadow-lg flex-1">
-            <div className="border-b pb-6 mb-6">
-              <h2 className="text-2xl font-semibold text-gray-800">Order Summary</h2>
-              <div className="mt-4 space-y-4">
+      <div className="relative z-10 container mx-auto px-4 sm:px-6 md:px-8 py-6 md:py-12">
+        <h1 className="text-3xl md:text-4xl font-bold text-center text-gray-800 mb-6">Lupam Pay</h1>
+        <div className="flex flex-col md:flex-row gap-6 md:gap-8 max-w-5xl mx-auto">
+          <div className="bg-white p-6 md:p-8 rounded-lg shadow-lg flex-1">
+            <div className="border-b pb-4 mb-4 md:pb-6 md:mb-6">
+              <h2 className="text-xl md:text-2xl font-semibold text-gray-800">Order Summary</h2>
+              <div className="mt-4 space-y-3 md:space-y-4">
                 {cartItems.map((item) => (
                   <div key={item.id} className="flex justify-between items-center">
                     <div>
@@ -135,31 +135,33 @@ export default function PaymentPage() {
             ) : (
               <div className="text-center">
                 <h2 className="text-2xl font-semibold text-gray-800 mb-6">Scan QR Code to Pay</h2>
-                <div className="bg-gray-50 p-6 rounded-lg inline-block mb-6">
-                  <QRCodeCanvas value={upiLink} size={256} />
+                <div className="bg-gray-50 p-4 md:p-6 rounded-lg inline-block mb-4 md:mb-6">
+                  <QRCodeCanvas value={upiLink} size={Math.min(window.innerWidth - 64, 256)} />
                 </div>
-                <div className="space-y-3 text-left bg-gray-50 p-4 rounded-lg">
-                  <p className="flex justify-between">
+                <div className="space-y-3 text-left bg-gray-50 p-4 rounded-lg mx-auto max-w-md">
+                  <p className="flex justify-between items-center text-base">
                     <span className="text-gray-600">Phone:</span>
                     <span className="font-medium">+91 {phone}</span>
                   </p>
-                  <p className="flex justify-between">
+                  <p className="flex justify-between items-center text-base">
                     <span className="text-gray-600">Amount:</span>
                     <span className="font-medium">₹{total}</span>
                   </p>
-                  <p className="text-sm text-gray-500 mt-2">
-                    <span className="font-medium">Order Items:</span><br />
-                    {transactionNote}
-                  </p>
+                  <div className="text-sm text-gray-500 mt-2">
+                    <span className="font-medium block mb-1">Order Items:</span>
+                    <div className="bg-white rounded p-2">
+                      {transactionNote}
+                    </div>
+                  </div>
                 </div>
-                <div className="mt-8 flex gap-4">
+                <div className="mt-6 md:mt-8 flex flex-col sm:flex-row gap-3 md:gap-4 px-4 sm:px-0">
                   <Link href="/" className="flex-1">
-                    <button className="w-full bg-gray-100 text-gray-800 py-3 px-6 rounded-lg hover:bg-gray-200 transition-colors text-base font-medium">
+                    <button className="w-full bg-gray-100 text-gray-800 py-4 sm:py-3 rounded-lg hover:bg-gray-200 active:bg-gray-300 transition-colors text-base font-medium touch-manipulation">
                       Cancel
                     </button>
                   </Link>
                   <Link href="/" className="flex-1">
-                    <button className="w-full bg-green-600 text-white py-3 px-6 rounded-lg hover:bg-green-700 transition-colors text-base font-medium">
+                    <button className="w-full bg-green-600 text-white py-4 sm:py-3 rounded-lg hover:bg-green-700 active:bg-green-800 transition-colors text-base font-medium touch-manipulation">
                       Done
                     </button>
                   </Link>

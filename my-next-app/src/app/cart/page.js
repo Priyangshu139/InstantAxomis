@@ -87,32 +87,34 @@ export default function CartPage() {
         ) : (
           <div className="bg-white p-8 rounded-lg shadow-lg">
             {cartItems.map((item) => (
-              <div key={item.id} className="flex items-center justify-between border-b py-4">
+              <div key={item.id} className="flex flex-col sm:flex-row sm:items-center border-b py-4 space-y-4 sm:space-y-0 sm:justify-between">
                 <div className="flex items-center">
-                  <Image src={item.image} alt={item.name} width={80} height={80} className="object-contain" />
+                  <Image src={item.image} alt={item.name} width={60} height={60} className="object-contain" />
                   <div className="ml-4">
                     <p className="font-bold text-lg text-black">{item.name}</p>
-                    <p className="text-black">₹{item.price}</p>
+                    <p className="text-black text-sm">₹{item.price}</p>
                   </div>
                 </div>
-                <div className="flex items-center bg-gray-100 rounded-full overflow-hidden shadow-md">
-                  <button 
-                    onClick={() => updateQuantity(item.id, item.quantity - 1)} 
-                    className="px-4 py-2 bg-gradient-to-r from-gray-200 to-gray-300 text-gray-700 hover:from-gray-300 hover:to-gray-400 transition-all duration-200 text-lg font-bold focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-opacity-50"
-                  >
-                    −
-                  </button>
-                  <span className="px-6 py-2 bg-white text-gray-800 font-bold text-lg min-w-[3rem] text-center">
-                    {item.quantity}
-                  </span>
-                  <button 
-                    onClick={() => updateQuantity(item.id, item.quantity + 1)} 
-                    className="px-4 py-2 bg-gradient-to-r from-gray-200 to-gray-300 text-gray-700 hover:from-gray-300 hover:to-gray-400 transition-all duration-200 text-lg font-bold focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-opacity-50"
-                  >
-                    +
-                  </button>
+                <div className="flex items-center justify-between sm:justify-end w-full sm:w-auto">
+                  <div className="flex items-center bg-gray-100 rounded-full overflow-hidden shadow-md mx-4">
+                    <button 
+                      onClick={() => updateQuantity(item.id, item.quantity - 1)} 
+                      className="w-12 h-12 flex items-center justify-center bg-gradient-to-r from-gray-200 to-gray-300 text-gray-700 hover:from-gray-300 hover:to-gray-400 transition-all duration-200 text-2xl font-bold focus:outline-none active:bg-gray-400 touch-manipulation"
+                    >
+                      −
+                    </button>
+                    <span className="px-6 py-2 bg-white text-gray-800 font-bold text-lg min-w-[3rem] text-center">
+                      {item.quantity}
+                    </span>
+                    <button 
+                      onClick={() => updateQuantity(item.id, item.quantity + 1)} 
+                      className="w-12 h-12 flex items-center justify-center bg-gradient-to-r from-gray-200 to-gray-300 text-gray-700 hover:from-gray-300 hover:to-gray-400 transition-all duration-200 text-2xl font-bold focus:outline-none active:bg-gray-400 touch-manipulation"
+                    >
+                      +
+                    </button>
+                  </div>
+                  <p className="font-bold text-black text-lg sm:ml-4 min-w-[80px] text-right">₹{item.price * item.quantity}</p>
                 </div>
-                <p className="font-bold text-black">₹{item.price * item.quantity}</p>
               </div>
             ))}
             <div className="text-right mt-8">
