@@ -7,21 +7,21 @@ export default function Home() {
   const products = [
     {
       id: 1,
-      name: "Instant Xandoh",
+      name: "Instant handoh",
       image: "/file_00000000d3c0622fa25504a47dbe12ec.png",
       description: (
         <>
           <p className="text-2xl">🍚 <span className="font-bold">Rooted in Tradition</span></p>
           <p className="mt-2">
-            Inspired by the beloved Assamese food “Xandoh” (সান্দহ), a fermented rice dish with generations of cultural value.
+            Inspired by the beloved Assamese food “handoh” (সান্দহ), a fermented rice dish with generations of cultural value.
           </p>
           <p className="text-2xl mt-4">💡 <span className="font-bold">The Answer</span></p>
           <p className="mt-2">
-            Instant Xandoh — a 2-minute tradition in a cup, like Maggi, but proudly Axomiya.
+            Instant handoh — a 2-minute tradition in a cup, like Maggi, but proudly Axomiya.
           </p>
         </>
       ),
-      price: "₹60/cup",
+      price: "₹45/cup",
     },
     {
       id: 2,
@@ -73,7 +73,7 @@ export default function Home() {
           </div>
         </div>
       ),
-      price: "₹245/20 tea bags 40g",
+      price: "₹105/20 tea bags 40g",
     },
   ];
 
@@ -254,7 +254,7 @@ export default function Home() {
               Testimonials
             </h2>
             <h3 className="text-3xl text-center text-gray-600 mt-2">
-              Taste of Home
+              Test of Home
             </h3>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mt-12">
               {testimonials.map((testimonial, index) => (
@@ -276,14 +276,38 @@ export default function Home() {
           </div>
         </main>
 
-        <footer id="contact" className="bg-[#EADDCA] text-gray-800 py-8">
-          <div className="container mx-auto text-center">
-            <h3 className="text-2xl font-bold">Contact Us</h3>
-            <p className="mt-4">Lupam Paul</p>
-            <p><a href="tel:7002252161" className="hover:underline">Phone: 7002252161</a></p>
-            <p><a href="mailto:lunatic.kid@example.com" className="hover:underline">Email: lunatic.kid@example.com</a></p>
-            <p><a href="https://www.google.com/maps/search/?api=1&query=Dibrugarh,Assam" target="_blank" rel="noopener noreferrer" className="hover:underline">123 Fake Street, Dibrugarh, Assam</a></p>
-            <p className="mt-8">&copy; 2025 Instant Axomiya. All rights reserved.</p>
+        <footer id="contact" className="bg-[#EADDCA] text-gray-800 py-12">
+          <div className="container mx-auto px-4">
+            <h3 className="text-3xl font-bold text-center mb-8">Contact Us</h3>
+            <div className="flex flex-col items-center max-w-4xl mx-auto mb-8">
+              <div className="grid grid-cols-2 gap-6 mb-8 w-full max-w-2xl">
+                <a href="tel:7002252161" className="flex flex-col items-center hover:scale-105 transition-transform">
+                  <Image src="/telephone.png" alt="Phone" width={40} height={40} className="mb-2" />
+                  <span>7002252161</span>
+                </a>
+                <a href="mailto:instantaxomiya@gmail.com" className="flex flex-col items-center hover:scale-105 transition-transform">
+                  <Image src="/email.png" alt="Email" width={40} height={40} className="mb-2" />
+                  <span>instantaxomiya@gmail.com</span>
+                </a>
+                <a href="https://www.instagram.com/instantaxomiya?igsh=MWV6emR4djB2Mm9sNg==" target="_blank" rel="noopener noreferrer" className="flex flex-col items-center hover:scale-105 transition-transform">
+                  <Image src="/instagram.png" alt="Instagram" width={40} height={40} className="mb-2" />
+                  <span>Instagram</span>
+                </a>
+                <a href="https://wa.me/7002252161" target="_blank" rel="noopener noreferrer" className="flex flex-col items-center hover:scale-105 transition-transform">
+                  <Image src="/whatsapp.png" alt="WhatsApp" width={40} height={40} className="mb-2" />
+                  <span>WhatsApp</span>
+                </a>
+              </div>
+              <div className="flex flex-col items-center justify-center bg-white bg-opacity-50 rounded-lg p-6 w-full max-w-md">
+                <h4 className="text-xl font-semibold mb-4">Visit Us</h4>
+                <a href="https://share.google/Rkjy7Ngz1tsgCxpBa" target="_blank" rel="noopener noreferrer" className="text-center hover:text-gray-600">
+                  <p>DHSK</p>
+                  <p>Dibrugarh</p>
+                  <p>Assam</p>
+                </a>
+              </div>
+            </div>
+            <p className="text-center">&copy; 2025 Instant Axomiya. All rights reserved.</p>
           </div>
         </footer>
       </div>

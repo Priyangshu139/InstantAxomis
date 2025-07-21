@@ -6,9 +6,9 @@ import { useState, useEffect } from "react";
 const products = [
   {
     id: 1,
-    name: "Instant Xandoh",
+    name: "Instant handoh",
     image: "/file_00000000d3c0622fa25504a47dbe12ec.png",
-    price: 60,
+    price: 45,
   },
   {
     id: 2,
@@ -20,7 +20,7 @@ const products = [
     id: 3,
     name: "Kol Khar",
     image: "/file_000000009ad461f8ae9c59c0a3850e64.png",
-    price: 245,
+    price: 105,
   },
 ];
 

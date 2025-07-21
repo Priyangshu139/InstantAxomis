@@ -6,8 +6,8 @@ import { QRCodeCanvas } from 'qrcode.react';
 const products = [
   {
     id: 1,
-    name: "Instant Xandoh",
-    price: 60,
+    name: "Instant handoh",
+    price: 45,
   },
   {
     id: 2,
@@ -17,7 +17,7 @@ const products = [
   {
     id: 3,
     name: "Kol Khar",
-    price: 245,
+    price: 105,
   },
 ];
 
@@ -63,7 +63,7 @@ export default function PaymentPage() {
       <div className="hidden md:block absolute top-0 right-0 h-full w-32 bg-repeat-y" style={{backgroundImage: "url('/Screenshot 2025-07-20 111526.png')", transform: "rotate(180deg)"}}></div>
       
       <div className="relative z-10 container mx-auto px-4 sm:px-6 md:px-8 py-6 md:py-12">
-        <h1 className="text-3xl md:text-4xl font-bold text-center text-gray-800 mb-6">Lupam Pay</h1>
+        <h1 className="text-3xl md:text-4xl font-bold text-center text-gray-800 mb-6">Payment</h1>
         <div className="flex flex-col md:flex-row gap-6 md:gap-8 max-w-5xl mx-auto">
           <div className="bg-white p-6 md:p-8 rounded-lg shadow-lg flex-1">
             <div className="border-b pb-4 mb-4 md:pb-6 md:mb-6">
@@ -141,11 +141,11 @@ export default function PaymentPage() {
                 <div className="space-y-3 text-left bg-gray-50 p-4 rounded-lg mx-auto max-w-md">
                   <p className="flex justify-between items-center text-base">
                     <span className="text-gray-600">Phone:</span>
-                    <span className="font-medium">+91 {phone}</span>
+                    <span className="font-semibold text-gray-900">+91 {phone}</span>
                   </p>
                   <p className="flex justify-between items-center text-base">
                     <span className="text-gray-600">Amount:</span>
-                    <span className="font-medium">₹{total}</span>
+                    <span className="font-semibold text-gray-900">₹{total}</span>
                   </p>
                   <div className="text-sm text-gray-500 mt-2">
                     <span className="font-medium block mb-1">Order Items:</span>
