@@ -75,7 +75,7 @@ export default function Home() {
           </div>
         </div>
       ),
-      price: "₹105/20 tea bags 40g",
+      price: "₹105",
     },
   ];
 
