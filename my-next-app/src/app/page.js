@@ -4,6 +4,8 @@ import Link from "next/link";
 import { useState, useEffect } from "react";
 
 export default function Home() {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  
   const products = [
     {
       id: 1,
@@ -129,24 +131,49 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-[#F8F0E3] relative">
-      <div className="absolute top-0 left-0 h-full w-32 bg-repeat-y" style={{backgroundImage: "url('/Screenshot 2025-07-20 111526.png')"}}></div>
-      <div className="absolute top-0 right-0 h-full w-32 bg-repeat-y" style={{backgroundImage: "url('/Screenshot 2025-07-20 111526.png')", transform: "rotate(180deg)"}}></div>
+      <div className="absolute top-0 left-0 h-full w-16 md:w-32 bg-repeat-y opacity-50 md:opacity-100" style={{backgroundImage: "url('/Screenshot 2025-07-20 111526.png')"}}></div>
+      <div className="absolute top-0 right-0 h-full w-16 md:w-32 bg-repeat-y opacity-50 md:opacity-100" style={{backgroundImage: "url('/Screenshot 2025-07-20 111526.png')", transform: "rotate(180deg)"}}></div>
       
       <div className="relative z-10">
-        <header className="sticky top-0 z-50 bg-[#EADDCA] shadow-md py-4 px-8">
+        <header className="sticky top-0 z-50 bg-[#EADDCA] shadow-md py-4 px-4 md:px-8">
           <div className="container mx-auto flex justify-between items-center">
             <div className="flex items-center">
               <Image
                 src="/WhatsApp Image 2025-07-20 at 10.02.00_834754b0.jpg"
                 alt="Instant Axomiya Logo"
-                width={60}
-                height={60}
+                width={50}
+                height={50}
+                className="md:w-[60px] md:h-[60px]"
               />
-              <h1 className="text-3xl font-bold text-gray-800 ml-4">
+              <h1 className="text-2xl md:text-3xl font-bold text-gray-800 ml-3 md:ml-4">
                 Instant Axomiya
               </h1>
             </div>
-            <nav className="flex items-center">
+            
+            {/* Mobile menu button */}
+            <div className="flex items-center gap-4 md:hidden">
+              <Link href="/cart" className="relative">
+                <svg className="h-7 w-7 text-gray-800" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+                </svg>
+                {cartCount > 0 && (
+                  <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
+                    {cartCount}
+                  </span>
+                )}
+              </Link>
+              <button
+                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                className="text-gray-800 hover:text-black"
+              >
+                <svg className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+              </button>
+            </div>
+
+            {/* Desktop navigation */}
+            <nav className="hidden md:flex items-center">
               <a href="#home" className="text-xl text-gray-800 hover:text-black mx-6">Home</a>
               <a href="#products" className="text-xl text-gray-800 hover:text-black mx-6">Products</a>
               <a href="#contact" className="text-xl text-gray-800 hover:text-black mx-6">Contact</a>
@@ -160,6 +187,27 @@ export default function Home() {
                   </span>
                 )}
               </Link>
+            </nav>
+          </div>
+
+          {/* Mobile navigation menu */}
+          <div className={`${mobileMenuOpen ? 'block' : 'hidden'} md:hidden mt-4 pb-4`}>
+            <nav className="flex flex-col space-y-3">
+              <a href="#home" 
+                onClick={() => setMobileMenuOpen(false)}
+                className="text-lg text-gray-800 hover:text-black px-4 py-2 hover:bg-[#F8F0E3] rounded transition-colors">
+                Home
+              </a>
+              <a href="#products" 
+                onClick={() => setMobileMenuOpen(false)}
+                className="text-lg text-gray-800 hover:text-black px-4 py-2 hover:bg-[#F8F0E3] rounded transition-colors">
+                Products
+              </a>
+              <a href="#contact" 
+                onClick={() => setMobileMenuOpen(false)}
+                className="text-lg text-gray-800 hover:text-black px-4 py-2 hover:bg-[#F8F0E3] rounded transition-colors">
+                Contact
+              </a>
             </nav>
           </div>
         </header>
@@ -185,16 +233,16 @@ export default function Home() {
             </div>
           </div>
 
-          <div id="products" className="container mx-auto px-8 py-24 space-y-24">
+          <div id="products" className="container mx-auto px-4 md:px-8 py-24 space-y-12 md:space-y-24">
             {products.map((product) => (
               <div
                 key={product.id}
-                className={`flex items-center justify-center ${
-                  product.id % 2 === 1 ? "flex-row" : "flex-row-reverse"
-                }`}
+                className={`md:flex md:flex-row items-center justify-center ${
+                  product.id % 2 === 1 ? "md:flex-row" : "md:flex-row-reverse"
+                } gap-6 md:gap-0 bg-white md:bg-transparent p-6 md:p-0 rounded-lg shadow-lg md:shadow-none`}
               >
-                <div className="w-1/3">
-                  <div className="relative h-96">
+                <div className="w-full md:w-1/3">
+                  <div className="relative h-64 md:h-96">
                     <Image
                       src={product.image}
                       alt={product.name}
@@ -204,14 +252,14 @@ export default function Home() {
                     />
                   </div>
                 </div>
-                <div className="w-2/3 px-12">
-                  <h3 className="text-4xl font-bold text-gray-800">
+                <div className="w-full md:w-2/3 px-4 md:px-12">
+                  <h3 className="text-3xl md:text-4xl font-bold text-gray-800 text-center md:text-left">
                     {product.name}
                   </h3>
-                  <div className="text-gray-600 mt-6 text-lg">
+                  <div className="text-gray-600 mt-4 md:mt-6 text-base md:text-lg">
                     {product.description}
                   </div>
-                  <p className="text-3xl font-bold text-gray-800 mt-6">
+                  <p className="text-2xl md:text-3xl font-bold text-gray-800 mt-4 md:mt-6 text-center md:text-left">
                     {product.price}
                   </p>
                   <div className="mt-8">
